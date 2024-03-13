@@ -10,7 +10,7 @@ export class ApiService {
   searchTerm = new BehaviorSubject("")
   cartCount =new BehaviorSubject(0)
   wishlistCount =new BehaviorSubject(0)
-  SERVER_URL = 'http://localhost:3000';
+  SERVER_URL = 'https://angular-e-cart-back.onrender.com';
   constructor(private http: HttpClient) {
     if(sessionStorage){
       this.getWishlistCount();
