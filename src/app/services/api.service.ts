@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
+  searchTerm = new BehaviorSubject("")
   cartCount =new BehaviorSubject(0)
   wishlistCount =new BehaviorSubject(0)
   SERVER_URL = 'http://localhost:3000';
@@ -80,5 +81,9 @@ export class ApiService {
 
   emptycartAPI(){
     return this.http.delete(`${this.SERVER_URL}/empty-cart`,this.appendTokenHeader())
+  }
+  isLoggedin(){
+    // the !! used for boolen
+    return !!sessionStorage.getItem("token")
   }
 }

@@ -7,15 +7,16 @@ import { RegisterComponent } from './register/register.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { UserCartComponent } from './user-cart/user-cart.component';
 import { CheckOutComponent } from './check-out/check-out.component';
+import { authGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   {path:'',component:AllProductsComponent},
   {path:'view/:id',component:ViewproductComponent},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
-  {path:'wishlist',component:WishlistComponent},
-  {path:'cart',component:UserCartComponent},
-  {path:'checkout', component:CheckOutComponent},
+  {path:'wishlist', canActivate:[authGuard],component:WishlistComponent},
+  {path:'cart',canActivate:[authGuard],component:UserCartComponent},
+  {path:'checkout',canActivate:[authGuard], component:CheckOutComponent},
   {path:'**',redirectTo:''}
 ];
 

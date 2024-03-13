@@ -9,9 +9,14 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AllProductsComponent implements OnInit {
   allProducts:any=[]
+  searchKey:string=""
+
 constructor (private api:ApiService,private toaster:ToastrService){}
 ngOnInit(): void {
   this.getAllproducts();
+  this.api.searchTerm.subscribe((res:any)=>{
+    this.searchKey = res
+  })
 }
 
   getAllproducts(){

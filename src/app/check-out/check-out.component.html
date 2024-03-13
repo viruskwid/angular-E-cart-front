@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div style="height: 70vh;" class="d-flex  justify-content-center  align-items-center w-100">
+<div style="height: 78vh;" class="d-flex  justify-content-center  align-items-center w-100">
      <div class="delivery w-50 mt-5">
         <div *ngIf="!checkoutStatus">
             <h2>DELIVERY DETAILS</h2>
@@ -33,6 +33,11 @@
                 <h4>{{checkOutForm.value.name}}</h4>
                 <h5>{{checkOutForm.value.address}}</h5>
                 <h5>{{checkOutForm.value.pincode}}</h5>
+                <hr>
+                <h4>Total Amount : $ {{totalAmount}}</h4>
+                <div class="payment mt-5">
+                  <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+                </div>
             </div>
         </div>
      </div>

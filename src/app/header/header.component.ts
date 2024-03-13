@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { Router } from '@angular/router';
+import { AllProductsComponent } from '../all-products/all-products.component';
+import { SearchPipe } from '../pipe/search.pipe';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +10,7 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit{
-
-constructor(private api:ApiService){}
+constructor(private api:ApiService,private router:Router){}
 ngOnInit(): void {
   if (sessionStorage.getItem("existingUser")) {
     this.loginUsername =JSON.parse(sessionStorage.getItem("existingUser") || "").username.split(" ")[0]
@@ -26,10 +28,15 @@ wishlistCount:number=0
 cartCount:number=0
 loginUsername:string=''
 
+getSearchTearm(event:any){
+ this.api.searchTerm.next(event.target.value)
+}
 logout(){
-  if(sessionStorage.getItem("existingUser")){
-    sessionStorage.removeItem("existingUser")
-  }
+ sessionStorage.clear()
+ this.loginUsername=""
+ this.wishlistCount=0
+ this.cartCount=0
+ this.router.navigateByUrl("/")
 }
 
 
